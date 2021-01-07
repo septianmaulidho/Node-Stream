@@ -1,0 +1,105 @@
+------WebKitFormBoundarylbTXt4oMQWtj2d1B
+Content-Disposition: form-data; name="upload-file"; filename="tutorial cloud server.txt"
+Content-Type: text/plain
+
+----Panduan connect ke Cloud Server-----
+1. ssh -i "server.pem" ubuntu@52.77.224.102
+
+ket : server.pem di drag kedalam terminal
+
+2. 52.77.224.102 didaptkan dari url dibawah ini
+52.77.224.102ec2-52-77-224-102.ap-southeast-1.compute.amazonaws.com
+
+3. Jika result pada tahap pertama , "unrpotected private key"
+lakukan :
+sudo chmod 400 "server.pem"
+------
+ssh -i " drag file server" ubuntu@52.77.224.102
+
+4. Install mysql-server di cloud server:
+sudo apt update
+------
+sudo apt install mysql-server
+------
+sudo lsof -i -P -n
+------
+mysql -u root -p
+
+5. Jika error / access denied, lakukan:
+mysql_secure_installation
+
+6. kalau error / access denied lagi, lakukan
+sudo mysql
+-------
+ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 't3st1ng@gmail';
+------
+ket : password harus unique, harus ada karakter @/# dll, agar tidak error ketika connect di DBeaver
+
+7. buka DBdeaver:
+8. Buat New Database Connection baru
+9. Pilih Mysql, next
+10. pada tab main, setting:
+server host : localhost
+username : root
+password :  t3st1ng@gmail (step 6)
+11. pindah ke tab SSH, centang SSH Tunner setting:
+Host / IP : 52.77.224.102 (step 1)
+user name : ubuntu
+authentication method : public key
+
+12. buka tab Driver Properties, setting :
+allowPublicKeyRetrieval TRUE / FALSE
+ket : silahkan diganti ganti antara true dan false sampai ketika test connection berhasil.
+
+13. Kembali ke terminal :
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh | bash
+-----
+nvm -v
+
+14. Jika not found, lakukan :
+source .bashrc
+-----
+nvm -v
+
+15. lanjut instal node, lakukan
+nvm install node
+----
+nvm user node
+-----
+nvm alias default node
+
+16. Melakukan deploy di gitlab untuk mendapatkan username dan token (buka gitlab)
+natannegara
+QfpQ1sW9CLaVxupnWpRA
+ket : jangan sampai hilang, token hanya akan dikirim sekali
+
+17. copy HTTP repository
+https://gitlab.com/glintsxbinar_batch8-miniproject/team-b/teamb-backend.git
+
+18. Kembali ke terminal, clone project dgn cara :
+masukkan :
+username : token@ -------> diantara https://.........gitlab
+contoh : https://natannegara:QfpQ1sW9CLaVxupnWpRA@gitlab.com/glintsxbinar_batch8-miniproject/team-b/teamb-backend.git
+
+19. lakukan :
+git clone https://natannegara:QfpQ1sW9CLaVxupnWpRA@gitlab.com/glintsxbinar_batch8-miniproject/team-b/teamb-backend.git
+
+20. install semua library node:
+npm install
+
+
+----------------------------------------------------------------------------
+-----------------CARA KELUAR DARI CLOUD-----------------
+~.
+-----------------------------------------------------------------------------
+
+
+                                        sekian
+
+
+
+
+
+
+
+------WebKitFormBoundarylbTXt4oMQWtj2d1B--
